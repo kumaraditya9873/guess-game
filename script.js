@@ -7,6 +7,7 @@ const secretnumber = Math.trunc(Math.random() * 20) + 1;
 
 // selecting the score element
 let score = 20;
+let highscore = 0;
 // to get random number in btn 1-20 :syntax - Math.random()*20
 // and to remove the decimal we wil use Math.trunc
 
@@ -28,6 +29,11 @@ check.addEventListener('click', function () {
 
     document.querySelector('body').style.backgroundColor = 'green';
     document.querySelector('.number').style.width = '30rem';
+
+    if (score > highscore) {
+      highscore = score;
+      document.querySelector('.highscore').textContent = highscore;
+    }
     // when guess is too high
   } else if (guess > secretnumber) {
     if (score > 1) {
@@ -50,4 +56,20 @@ check.addEventListener('click', function () {
       document.querySelector('.score').textContent = 0;
     }
   }
+});
+
+// setting up the again button
+
+let again = document.querySelector('.again');
+again.addEventListener('click', function () {
+  let score = 20;
+  const secretnumber = Math.trunc(Math.random() * 20) + 1;
+
+  document.querySelector('.message').textContent = 'Start Your Guess...';
+  document.querySelector('.number').textContent = '?';
+  document.querySelector('.guess').value = '';
+  document.querySelector('.number').style.width = '15rem';
+
+  document.querySelector('.score').textContent = score;
+  document.querySelector('.body').style.backgroundColor = '#222';
 });
